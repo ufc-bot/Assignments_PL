@@ -138,6 +138,7 @@ void evaluateStringConcatenation(char *result, char *expr) {
 // Function to process a single line of code
 void processLine(char *line) {
   char id[100], expr[100];
+//   printf("Processing line: %s\n", line);
 
   // Handle integer declaration and assignment: int a = 4 or int a;
   if (sscanf(line, "int %s = %[^\n]", id, expr) == 2) {
@@ -235,13 +236,16 @@ void processLine(char *line) {
     int varIndex = findVariable(id);
     if (varIndex != -1) {
       if (symbolTable[varIndex].isString) {
-        printf("Error: Scanf does not support strings for '%s'\n", id);
-        exit(1);
+        printf("Enter value for %s: ", id);
+        fgets(symbolTable[varIndex].strValue, sizeof(symbolTable[varIndex].strValue), stdin);
+        symbolTable[varIndex].strValue[strcspn(symbolTable[varIndex].strValue, "\n")] = 0; // Remove newline character
+        symbolTable[varIndex].isInitialized = 1;
+      } else {
+        printf("Enter value for %s: ", id);
+        scanf("%d", &symbolTable[varIndex].intValue);
+        symbolTable[varIndex].isInitialized = 1;
+        getchar(); // To consume the newline character left after scanf
       }
-      printf("Enter value for %s: ", id);
-      scanf("%d", &symbolTable[varIndex].intValue);
-      symbolTable[varIndex].isInitialized = 1;
-      getchar(); // To consume the newline character left after scanf
     } else {
       printf("Error: Undefined variable '%s'\n", id);
       exit(1);
@@ -250,6 +254,20 @@ void processLine(char *line) {
     printf("Error: Invalid syntax\n");
     exit(1);
   }
+
+  // Print the current state of the symbol table
+//   printf("Symbol Table:\n");
+//   for (int i = 0; i < symbolCount; i++) {
+//     if (symbolTable[i].isString) {
+//       printf("  %s = \"%s\" (string, %s)\n", symbolTable[i].name,
+//              symbolTable[i].strValue,
+//              symbolTable[i].isInitialized ? "initialized" : "uninitialized");
+//     } else {
+//       printf("  %s = %d (int, %s)\n", symbolTable[i].name,
+//              symbolTable[i].intValue,
+//              symbolTable[i].isInitialized ? "initialized" : "uninitialized");
+//     }
+//   }
 }
 
 int main() {
