@@ -1,3 +1,18 @@
+/*Implementation of a custom interpreter for a small language written in C. 
+The interpreter supports basic arithmetic operations, string manipulation (including concatenation),
+and I/O operations like scanf and printf.
+It handles variable declarations for integers and strings, error reporting, and
+executes statements line by line. The project showcases
+a simple yet functional scripting language with basic support for integers and strings,  
+designed to demonstrate interpreter design principles.*/
+
+/*Most tasks completed and solutions provided. 
+While some tasks are still in progress, 
+the majority of the work has been successfully implemented and documented.*/
+
+
+
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
