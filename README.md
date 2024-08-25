@@ -17,7 +17,7 @@ The interpreter recognizes the following commands:
 
 ### 1. Integer Declaration and Assignment
 
-- **Syntax**: `int <variable_name> = <expression>;` or `int <variable_name>;`
+- **Syntax**: `int <variable_name> = <expression>` or `int <variable_name>`
 - **Example**:
   ```c
   int a = 5
