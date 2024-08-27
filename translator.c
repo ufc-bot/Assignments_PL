@@ -3,4 +3,4 @@ translator shall include:
 selection
 projection
 join and 
-set operation*/
+set operation: union, intersection, difference*/
